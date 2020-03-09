@@ -1,0 +1,37 @@
+﻿@using Nop.Core.Domain.Catalog
+@using Nop.Services
+@model OrderModel
+
+<div class="panel-body">
+    <div class="form-group">
+        <div class="col-md-3">
+            <nop-label asp-for="CardName" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="CardName" />
+            <span asp-validation-for="CardName"></span>
+        </div>
+    </div>
+</div>   
+
+<nop-alert asp-alert-id="generateCouponCodeFailed" asp-alert-message="@T("Admin.GiftCards.Fields.GiftCardCouponCode.Alert.FailedGenerate")" />
+
+@*<script>
+    $(document).ready(function() {
+        $("#@Html.IdFor(model => model.GiftCardTypeId)").change(toggleGiftCardType);
+        toggleGiftCardType();
+    });
+
+    function toggleGiftCardType() {
+        var selectedGiftCardTypeId = $("#@Html.IdFor(model => model.GiftCardTypeId)").val();
+        if (selectedGiftCardTypeId == @(((int) GiftCardType.Virtual).ToString())) {
+            $('#pnlRecipientEmail').show();
+            $('#pnlSenderEmail').show();
+            $('#pnlNotifyRecipient').show();
+        } else {
+            $('#pnlRecipientEmail').hide();
+            $('#pnlSenderEmail').hide();
+            $('#pnlNotifyRecipient').hide();
+        }
+    }
+</script>*@
