@@ -16,7 +16,7 @@
 <div class="content">
     <div class="form-horizontal">
         <nop-panels id="gift-card-panels">
-            <nop-panel asp-name="gift-card-info" asp-icon="fa fa-info" asp-title="@T("Admin.Order.Info")" asp-hide-block-attribute-name="@hideInfoBlockAttributeName" asp-hide="@hideInfoBlock" asp-advanced="false">@await Html.PartialAsync("_CreateOrUpdate.Info", Model)</nop-panel>
+            <nop-panel asp-name="gift-card-info" asp-icon="fa fa-info" asp-title="@T("Info")" asp-hide-block-attribute-name="@hideInfoBlockAttributeName" asp-hide="@hideInfoBlock" asp-advanced="false">@await Html.PartialAsync("_CreateOrUpdate.Info", Model)</nop-panel>
             
             @*@if (Model.Id > 0)
             {

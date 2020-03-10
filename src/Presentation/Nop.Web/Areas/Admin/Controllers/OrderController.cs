@@ -2973,29 +2973,44 @@ namespace Nop.Web.Areas.Admin.Controllers
         [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
         public virtual IActionResult Create(OrderModel model, bool continueEditing)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageGiftCards))
-                return AccessDeniedView();
+            //if (!_permissionService.Authorize(StandardPermissionProvider.ManageGiftCards))
+            //    return AccessDeniedView();
+            var a = 100;
+            Order order = new Order();
+            order.OrderGuid = Guid.NewGuid();
+            order.CreatedOnUtc = DateTime.UtcNow;
+            order.OrderGuid = Guid.NewGuid();
+            order.StoreId = 1;
+            order.AffiliateId = model.AffiliateId;
+            order.PaymentStatusId = model.PaymentStatusId;
+            order.CardName = model.CardName;
 
-            if (ModelState.IsValid)
-            {
-                var giftCard = model.ToEntity<GiftCard>();
-                giftCard.CreatedOnUtc = DateTime.UtcNow;
-                _giftCardService.InsertGiftCard(giftCard);
+            order.CustomOrderNumber = DateTime.Now.ToString("yyyyMMddhhmmss");
+            order.CustomerId = 1;
+            order.BillingAddressId = 10;
+            order.ShippingAddressId = 10;
+            order.PickupAddressId = 10;
+            order.AuthorizationTransactionCode = "";
+            order.AuthorizationTransactionId = "";
+            order.AuthorizationTransactionResult = "";
+            order.CaptureTransactionId = "";
+            order.CaptureTransactionResult = "";
+            order.CardCvv2 = "";
 
-                //activity log
-                _customerActivityService.InsertActivity("AddNewOrder",
-                    string.Format(_localizationService.GetResource("ActivityLog.AddNewGiftCard"), giftCard.GiftCardCouponCode), giftCard);
+      
 
-                _notificationService.SuccessNotification(_localizationService.GetResource("Admin.Orders.Added"));
 
-                return continueEditing ? RedirectToAction("Edit", new { id = giftCard.Id }) : RedirectToAction("List");
-            }
 
-            //prepare model
-            model = _orderModelFactory.PrepareOrderModel(model, null, true);
 
-            //if we got this far, something failed, redisplay form
-            return View(model);
+           _orderService.InsertOrder(order);
+           return continueEditing ? RedirectToAction("Edit", new { id = order.Id }) : RedirectToAction("List");
+
+
+            ////prepare model
+            //model = _orderModelFactory.PrepareOrderModel(model, null, true);
+
+            ////if we got this far, something failed, redisplay form
+            //return View(model);
         }
     }
 }
