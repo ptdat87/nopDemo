@@ -1060,6 +1060,7 @@ namespace Nop.Web.Areas.Admin.Factories
                 model.CustomerInfo = order.Customer.IsRegistered() ? order.Customer.Email : _localizationService.GetResource("Admin.Customers.Guest");
                 model.CreatedOn = _dateTimeHelper.ConvertToUserTime(order.CreatedOnUtc, DateTimeKind.Utc);
                 model.CustomValues = _paymentService.DeserializeCustomValues(order);
+                model.CardName = order.CardName;
 
                 var affiliate = _affiliateService.GetAffiliateById(order.AffiliateId);
                 if (affiliate != null)

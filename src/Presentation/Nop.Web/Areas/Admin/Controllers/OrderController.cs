@@ -2982,8 +2982,15 @@ namespace Nop.Web.Areas.Admin.Controllers
             order.OrderGuid = Guid.NewGuid();
             order.StoreId = 1;
             order.AffiliateId = model.AffiliateId;
-            order.PaymentStatusId = model.PaymentStatusId;
+            //order.PaymentStatusId = model.PaymentStatusId;
             order.CardName = model.CardName;
+            order.VatNumber = model.VatNumber;
+            order.OrderStatusId = 20;
+            order.ShippingStatusId = 20;
+            order.PaymentStatusId = 10;
+            order.CurrencyRate = 1;
+            order.TaxRates = "0:0;";
+            
 
             order.CustomOrderNumber = DateTime.Now.ToString("yyyyMMddhhmmss");
             order.CustomerId = 1;

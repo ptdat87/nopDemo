@@ -3,34 +3,46 @@
 @using Nop.Core.Domain.Enum
 @model OrderModel
 
-    <div class="panel-body">
-        <div class="form-group">
+<div class="panel-body">
+    <div class="form-group">
+        <div class="row">
             <div class="col-md-1">
-                <label>Triệu chứng</label>
+                <div class="label-wrapper"><label>Symptom</label></div>
             </div>
             <div class="col-md-5">
-                <nop-editor asp-for="CardName" />
+                <nop-editor asp-for="CardName" asp-required="true" />
                 <span asp-validation-for="CardName"></span>
             </div>
         </div>
-        <div class="form-group">
+        <br>
+        <div class="row">
             <div class="col-md-1">
-                <label>Cách dùng</label>
+                <div class="label-wrapper"> <label>Usage</label></div>
             </div>
             <div class="col-md-5">
-                <nop-select asp-for="PaymentStatusId" asp-items="((EnumCachDung)Model.PaymentStatusId).ToSelectList()" />
+                <nop-select asp-for="VatNumber" asp-items="((EnumCachDung)(String.IsNullOrEmpty(Model.VatNumber)? 0 : int.Parse(Model.VatNumber))).ToSelectList()" />
             </div>
+        </div>
+        <br>
+        <div class="row">
             <div class="col-md-1">
-                <label>Liều dùng</label>
+                <div class="label-wrapper">  <label>Dosage</label></div>
             </div>
             <div class="col-md-5">
                 <nop-select asp-for="AffiliateId" asp-items="((EnumLieuDung)Model.AffiliateId).ToSelectList()" />
             </div>
         </div>
-        <div class="form-group">
-            
-        </div>
+
+
+
     </div>
+    <div class="form-group">
+
+    </div>
+    <div class="form-group">
+
+    </div>
+</div>
 
 <nop-alert asp-alert-id="generateCouponCodeFailed" asp-alert-message="@T("Admin.GiftCards.Fields.GiftCardCouponCode.Alert.FailedGenerate")" />
 
